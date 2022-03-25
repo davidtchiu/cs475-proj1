@@ -104,9 +104,12 @@ struct qentry *getbypid(pid32 pid, struct queue *q)
  */
 pid32 getfirst(struct queue *q)
 {
-	// TODO - return EMPTY if queue is empty
+	if (isempty(q))
+	{
+		return EMPTY;
+	}
 
-	// TODO - remove process from head of queue and return its pid
+	return dequeue(q);
 }
 
 /**
@@ -117,8 +120,13 @@ pid32 getfirst(struct queue *q)
 pid32 getlast(struct queue *q)
 {
 	// TODO - return EMPTY if queue is empty
+	if (isempty(q))
+	{
+		return EMPTY;
+	}
 
 	// TODO - remove process from tail of queue and return its pid
+	return remove(q->tail->pid, q);
 }
 
 /**
